@@ -6,37 +6,45 @@
 /*   By: nleandro <nleandro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 18:55:58 by nleandro          #+#    #+#             */
-/*   Updated: 2025/02/03 15:41:26 by nleandro         ###   ########.fr       */
+/*   Updated: 2025/02/17 16:45:08 by nleandro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+t_stacks	*set_stacks(void)
+{
+	t_stacks	*data;
+
+	data = malloc(sizeof(t_stacks));
+	if (!data)
+		return (NULL);
+	data->a = malloc(sizeof(t_stk));
+	if (!data->a)
+		return (free(data), NULL);
+	data->b = malloc(sizeof(t_stk));
+	if (!data->b)
+		return (free(data->a), free(data), NULL);
+	data->a->top = -1;
+	data->b->top = -1;
+	data->do_a = NON;
+	data->do_b = NON;
+	return (data);
+}
+
+void	free_stacks(t_stacks *data)
+{
+	if (data)
+	{
+		free(data->a);
+		free(data->b);
+		free(data);
+	}
+}
+
 void	error_log(char	*err)
 {
 	ft_printf(">	%s\n", err);
-	if (ft_strncmp("Er01", err, 4))
+	if (!(err[2] == 48 && err[3] == 49))
 		write(2, "error", 5);
-}
-
-int	atoi_unlim(const char *src)
-{
-	int	n;
-	int	val;
-
-	n = 1;
-	val = 0;
-	if (!src)
-		return (0);
-	while ((*src >= 9 && *src <= 13) || *src == 32)
-		src++;
-	if (*src == 45)
-		n = -1;
-	while (*src == 45 || *src == 43)
-		src++;
-	while(*src == 48)
-		src++;
-	while (*src >= 48 && *src <= 57)
-		val = val * 10 + (-48 + *src++);
-	return (val * n);
 }

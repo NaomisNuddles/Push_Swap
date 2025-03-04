@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_mtxlen.c                                        :+:      :+:    :+:   */
+/*   stk_aux_read.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nleandro <nleandro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/28 13:15:25 by nleandro          #+#    #+#             */
-/*   Updated: 2025/02/17 16:29:35 by nleandro         ###   ########.fr       */
+/*   Created: 2025/02/17 16:51:10 by nleandro          #+#    #+#             */
+/*   Updated: 2025/02/19 14:21:57 by nleandro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "push_swap.h"
 
-size_t	ft_mtxlen(char **src)
+int	stk_ordered(t_stk *stk)
 {
-	size_t	i;
+	int	min;
+	int	n_min;
+	int	ord;
 
-	i = 0;
-	while (src && src[i])
-		i++;
-	return (i);
+	ord = 1;
+	min = stk_min(stk);
+	while (ord <= stk->top)
+	{
+		n_min = stk_next_min(stk, min);
+		if (stk_poke(stk, min) < stk_poke(stk, n_min))
+			break ;
+		min = n_min;
+		ord++;
+	}
+	return (ord);
 }

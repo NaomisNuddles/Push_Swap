@@ -1,5 +1,5 @@
 #			-->|   Files to Compile   |<--
-FILES		=		stk_aux_dumb_ops stk_aux_ops stk_aux_utils arg_aux_checks args_to_stk aux_utils
+FILES		=		stk_ops_dumb stk_ops_core stk_ops_comp stk_aux_read args_to_stk aux_utils
 
 #			-->|   Titles   |<--
 HEAD		=		"42 Push Swap"
@@ -54,8 +54,8 @@ T_COMPILING	=		@echo "	$(GRAY)... $(YELLOW)Compiling $(WHITE)$(FLAGS): $(YELLOW)
 T_REMOVE_O	=		@echo "$(MAGENTA)$(HEAD): Objects Removed!$(DEF)\n"
 T_REMOVE_A	=		@echo "$(BMAGENTA)$(HEAD): All Files Removed!$(DEF)\n"
 T_COMPILED	=		@echo "\n$(BGREEN)	     $(HEAD) Compiled!   $(GRAY)|<--$(DEF)\n"
-T_EXECUTING	=		@echo "\n$(GRAY)-->|	$(BLUE)Executing: $(BCYAN)$(NAME) $(BLUE)at $(WHITE)exe $(GRAY)...$(DEF)"
-T_EXECUTED	=		@echo "$(GRAY)	...$(BGREEN)Execution Ended!   $(GRAY)|<--$(DEF)\n"
+T_EXECUTING	=		@echo "\n$(GRAY)-->|	$(BLUE)Executing: $(BCYAN)$(NAME) $(BLUE)at $(WHITE)$(RUN) $(GRAY)...$(DEF)"
+T_EXECUTED	=		@echo "$(GRAY)	./exe $(DEF)"
 
 #			-->|   Rules   |<--
 .PHONY: all bonus clean fclean re exe
