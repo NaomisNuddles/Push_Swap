@@ -6,7 +6,7 @@
 /*   By: nleandro <nleandro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:51:10 by nleandro          #+#    #+#             */
-/*   Updated: 2025/02/19 14:21:57 by nleandro         ###   ########.fr       */
+/*   Updated: 2025/03/04 17:22:10 by nleandro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,7 @@ int	stk_ordered(t_stk *stk)
 		min = n_min;
 		ord++;
 	}
-	return (ord);
+	if (ord == stk->top + 1)
+		return (0);
+	return (stk->top + 1 - ord);
 }

@@ -6,7 +6,7 @@
 /*   By: nleandro <nleandro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 18:55:58 by nleandro          #+#    #+#             */
-/*   Updated: 2025/02/17 17:02:18 by nleandro         ###   ########.fr       */
+/*   Updated: 2025/03/04 17:23:31 by nleandro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct s_stacks
 {
 	t_stk	*a;
 	t_stk	*b;
+	int		oop;
 	t_rules	do_a;
 	t_rules	do_b;
 }	t_stacks;

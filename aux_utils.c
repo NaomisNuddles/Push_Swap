@@ -6,7 +6,7 @@
 /*   By: nleandro <nleandro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 18:55:58 by nleandro          #+#    #+#             */
-/*   Updated: 2025/02/17 16:45:08 by nleandro         ###   ########.fr       */
+/*   Updated: 2025/03/04 17:27:46 by nleandro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_stacks	*set_stacks(void)
 		return (free(data->a), free(data), NULL);
 	data->a->top = -1;
 	data->b->top = -1;
+	data->oop = 0;
 	data->do_a = NON;
 	data->do_b = NON;
 	return (data);
@@ -44,7 +45,11 @@ void	free_stacks(t_stacks *data)
 
 void	error_log(char	*err)
 {
-	ft_printf(">	%s\n", err);
 	if (!(err[2] == 48 && err[3] == 49))
+	{
+		ft_printf(">	%s\n", err);
 		write(2, "error", 5);
+	}
+	else
+		ft_printf(">	%s:	Stack Already Sorted!\n", err);
 }

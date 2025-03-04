@@ -6,7 +6,7 @@
 /*   By: nleandro <nleandro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 16:29:53 by nleandro          #+#    #+#             */
-/*   Updated: 2025/02/17 16:51:35 by nleandro         ###   ########.fr       */
+/*   Updated: 2025/03/04 17:14:04 by nleandro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ int	stk_next_min(t_stk *stk, int p_min)
 	j = i - 1;
 	while (j >= 0)
 	{
-		if (stk->stk[i] > stk->stk[j] && stk->stk[j] > p_min)
+		if ((stk->stk[i] > stk->stk[j] && stk->stk[j] > p_min) \
+		|| stk->stk[i] <= p_min)
 			i = j;
 		j--;
 	}
@@ -83,7 +84,8 @@ int	stk_next_max(t_stk *stk, int p_max)
 	j = i - 1;
 	while (j >= 0)
 	{
-		if (stk->stk[i] < stk->stk[j] && stk->stk[j] < p_max)
+		if ((stk->stk[i] < stk->stk[j] && stk->stk[j] < p_max) \
+		|| stk->stk[i] >= p_max)
 			i = j;
 		j--;
 	}
