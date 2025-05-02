@@ -6,7 +6,7 @@
 /*   By: nleandro <nleandro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 18:55:58 by nleandro          #+#    #+#             */
-/*   Updated: 2025/05/02 19:11:30 by nleandro         ###   ########.fr       */
+/*   Updated: 2025/05/02 20:12:12 by nleandro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int num_to_we(int num, int n_num)
 	else if (num > n_num)
 		return (4);
 	else if (num == n_num)
-		return (1);
+		return (2);
 	return (0);
 }
 
