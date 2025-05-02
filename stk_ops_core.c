@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stk_aux_ops.c                                      :+:      :+:    :+:   */
+/*   stk_ops_core.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nleandro <nleandro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 18:55:58 by nleandro          #+#    #+#             */
-/*   Updated: 2025/02/03 16:51:08 by nleandro         ###   ########.fr       */
+/*   Updated: 2025/05/02 18:43:21 by nleandro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	stk_pop(t_stk *stk)
 {
 	int	val;
 
-	if (!stk_isempty(stk))
+	if (stk_isempty(stk))
 		return (0);
 	val = stk->stk[stk->top--];
 	return (val);
@@ -47,7 +47,7 @@ int	stk_pop_zed(t_stk *stk)
 	int	val;
 	int	i;
 
-	if (!stk_isempty(stk))
+	if (stk_isempty(stk))
 		return (0);
 	i = 0;
 	val = stk->stk[0];

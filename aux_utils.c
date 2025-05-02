@@ -6,11 +6,29 @@
 /*   By: nleandro <nleandro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 18:55:58 by nleandro          #+#    #+#             */
-/*   Updated: 2025/03/31 18:19:31 by nleandro         ###   ########.fr       */
+/*   Updated: 2025/05/02 18:06:42 by nleandro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static void	set_stacks_vals (t_stacks *data)
+{
+	data->a->top = -1;
+	data->op_a->num = 0;
+	data->op_a->sx = 0;
+	data->op_a->rx = 0;
+	data->op_a->rrx = 0;
+	data->op_a->px = 0;
+	data->do_a = NOOP;
+	data->b->top = -1;
+	data->op_b->num = -1;
+	data->op_b->sx = 0;
+	data->op_b->rx = 0;
+	data->op_b->rrx = 0;
+	data->op_b->px = 0;
+	data->do_b = NOOP;
+}
 
 t_stacks	*set_stacks(void)
 {
@@ -25,11 +43,14 @@ t_stacks	*set_stacks(void)
 	data->b = malloc(sizeof(t_stk));
 	if (!data->b)
 		return (free(data->a), free(data), NULL);
-	data->a->top = -1;
-	data->b->top = -1;
-	data->at_wrg = 0;
-	data->do_a = NOOP;
-	data->do_b = NOOP;
+	data->op_a = malloc(sizeof(t_ops));
+	if (!data->b)
+		return (free(data->b), free(data->a), free(data), NULL);
+	data->op_b = malloc(sizeof(t_ops));
+	if (!data->b)
+		return (free(data->op_a), free(data->b), free(data->a), \
+		free(data), NULL);
+	set_stacks_vals (data);
 	return (data);
 }
 

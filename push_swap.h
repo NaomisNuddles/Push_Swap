@@ -6,7 +6,7 @@
 /*   By: nleandro <nleandro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 18:55:58 by nleandro          #+#    #+#             */
-/*   Updated: 2025/05/02 09:44:04 by nleandro         ###   ########.fr       */
+/*   Updated: 2025/05/02 19:52:24 by nleandro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,8 @@ Er05:		Number Out of Range!\n\
 Er06:		Repeated Numbers Found!\n\
 Er07:		UDF - Did Not Find Sorting Product!\n\
 Er08:		UDF - Lost Sorting Product!\n\
-Er09:		UDF - Lost Stack a!\n\
-Er10:		UDF - Lost Stack b!\n\
-Er11:		UDF - Did Not Sort Stack a!\n\
+Er09:		UDF - Lost Stacks!\n\
+Er10:		UDF - Did Not Sort Stack a!\n\
 "
 
 typedef enum e_rules
@@ -43,20 +42,68 @@ typedef enum e_rules
 	DUMB
 }	t_rules;
 
+typedef enum e_lock
+{
+	ALL_A,
+	ALL_B,
+	SEMI_B
+}	t_lock;
+
 typedef struct s_stk
 {
 	int		top;
 	int		stk[MAX_STACK_SIZE];
 }	t_stk;
 
+typedef struct s_ops
+{
+	int	num;
+	int	sx;
+	int	rx;
+	int	rrx;
+	int	px;
+}	t_ops;
+
 typedef struct s_stacks
 {
 	t_stk	*a;
 	t_stk	*b;
-	int		at_wrg;
+	t_ops	*op_a;
+	t_ops	*op_b;
 	t_rules	do_a;
 	t_rules	do_b;
 }	t_stacks;
+
+//	wemap_read.c
+//static void		get_a_ops(t_stacks *data);
+void			get_ops(t_stacks *data);
+
+//	wemap_build.c
+//static int 				num_to_we(int num, int n_num);
+//static int				get_push_weight(t_stacks *data, char stk);
+//static int				get_weight(t_stacks *data, t_rules type, t_rules rev, char stk);
+void			build_wemap(t_stacks *data);
+
+//	wemap_utils.c
+void			clean_wemap(t_stacks *data);
+//static void		lock_both(t_stacks *data);
+//static void		lock_reverse(t_stacks *data);
+//static void		lock_ops(t_stacks *data, t_lock path);
+void			get_wemap(t_stacks *data);
+
+//	stk_comp.c
+bool			stk_issorted_rev(t_stk *stk);
+//static int				stk_poke(t_stk *stk, int num);
+//static int				stk_min(t_stk *stk);
+//static int				stk_next_min(t_stk *stk, int p_min);
+int				stk_oop_num(t_stk *stk);
+
+//	stk_ops_do.c
+void 			write_ops(t_stacks *data);
+//static void		do_both(t_stacks *data);
+//static void		do_one_a(t_stacks *data);
+//static void		do_one_b(t_stacks *data);
+bool			do_ops(t_stacks *data);
 
 //	stk_ops_dumb.c
 bool			stk_issorted(t_stk *stk);
@@ -72,24 +119,14 @@ void			stk_push(t_stk *stk, int val);
 int				stk_pop(t_stk *stk);
 int				stk_pop_zed(t_stk *stk);
 
-//	stk_ops_comp.c
-int				stk_poke(t_stk *stk, int num);
-int				stk_min(t_stk *stk);
-int				stk_next_min(t_stk *stk, int p_min);
-int				stk_max(t_stk *stk);
-int				stk_next_max(t_stk *stk, int p_max);
-
-//	stk_aux_read.c
-int				stk_ordered(t_stk *stk);
-bool			sorter_check(t_stacks *data);
-
-//	args_to_stk.c
+//	stk_parsing.c
 bool			arg_issplit(char *arg);
 bool			arg_isvalid(char *arg);
 bool			arg_pop(char *arg, t_stk *stk);
 bool			args_pick(int cnt, char **args, t_stk *stk);
 
 //	aux_utils.c
+//static void		set_stacks_vals (t_stacks *data);
 t_stacks		*set_stacks(void);
 void			free_stacks(t_stacks *data);
 void			error_log(char	*err);

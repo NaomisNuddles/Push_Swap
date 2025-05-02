@@ -1,18 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stk_ops_comp.c                                     :+:      :+:    :+:   */
+/*   stk_comp.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nleandro <nleandro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 16:29:53 by nleandro          #+#    #+#             */
-/*   Updated: 2025/03/04 17:14:04 by nleandro         ###   ########.fr       */
+/*   Updated: 2025/05/02 19:54:35 by nleandro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	stk_poke(t_stk *stk, int num)
+bool	stk_issorted_rev(t_stk *stk)
+{
+	int	i;
+
+	i = 0;
+	while (i < stk->top)
+	{
+		if (stk->stk[i] > stk->stk[i + 1])
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
+static int	stk_poke(t_stk *stk, int num)
 {
 	int	i;
 
@@ -26,7 +40,7 @@ int	stk_poke(t_stk *stk, int num)
 	return (i);
 }
 
-int	stk_min(t_stk *stk)
+static int	stk_min(t_stk *stk)
 {
 	int	i;
 	int	j;
@@ -42,7 +56,7 @@ int	stk_min(t_stk *stk)
 	return (stk->stk[i]);
 }
 
-int	stk_next_min(t_stk *stk, int p_min)
+static int	stk_next_min(t_stk *stk, int p_min)
 {
 	int	i;
 	int	j;
@@ -59,35 +73,23 @@ int	stk_next_min(t_stk *stk, int p_min)
 	return (stk->stk[i]);
 }
 
-int	stk_max(t_stk *stk)
+int	stk_oop_num(t_stk *stk)
 {
-	int	i;
-	int	j;
+	int	min;
+	int	n_min;
+	int	at_sep;
 
-	i = stk->top;
-	j = i - 1;
-	while (j >= 0)
+	at_sep = 1;
+	min = stk_min(stk);
+	while (at_sep <= stk->top)
 	{
-		if (stk->stk[i] < stk->stk[j])
-			i = j;
-		j--;
+		n_min = stk_next_min(stk, min);
+		if (stk_poke(stk, min) < stk_poke(stk, n_min))
+			break ;
+		min = n_min;
+		at_sep++;
 	}
-	return (stk->stk[i]);
-}
-
-int	stk_next_max(t_stk *stk, int p_max)
-{
-	int	i;
-	int	j;
-
-	i = stk->top;
-	j = i - 1;
-	while (j >= 0)
-	{
-		if ((stk->stk[i] < stk->stk[j] && stk->stk[j] < p_max) \
-		|| stk->stk[i] >= p_max)
-			i = j;
-		j--;
-	}
-	return (stk->stk[i]);
+	if (at_sep == stk->top + 1)
+		return (0);
+	return (stk->top + 1 - at_sep);
 }

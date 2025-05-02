@@ -1,10 +1,10 @@
 #			-->|   Files to Compile   |<--
-FILES		=		stk_ops_dumb stk_ops_core stk_ops_comp stk_aux_read args_to_stk aux_utils
+FILES		=		aux_utils stk_parsing stk_ops_core stk_ops_dumb stk_ops_do stk_comp wemap_utils wemap_build wemap_read
 
 #			-->|   Titles   |<--
 HEAD		=		"42 Push Swap"
 NAME		=		push_swap.a
-RUN			=		exe
+RUN			=		push_swap.exe
 UTL			=		ft_utils_lib.a
 
 #			-->|   Command Definitions   |<--
@@ -28,7 +28,7 @@ M_F			=		@make --no-print-directory -C $(UTL_DIR) fclean
 RMV			=		@rm -rf $(OBJ_DIR)
 CRT			=		@ar -rcs $(NAME)
 AR			=		@ar -rcs $(NAME) $(OBJ)
-EXE			=		@cc $(FLAGS) $(INC_DIR) -o $(RUN) push_swap.c $(NAME)
+EXE			=		@cc $(FLAGS) $(INC_DIR) -g -o $(RUN) push_swap.c $(NAME)
 
 #			-->|   Colors & Messages   |<--
 START		=		start
