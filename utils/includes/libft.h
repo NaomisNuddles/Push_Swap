@@ -77,4 +77,5 @@ t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 //				My Bonus
 void		ft_mtx_free(char **mtx);
 size_t		ft_mtxlen(char **src);
+long		ft_atol(const char *str);
 #endif //LIBFT_H

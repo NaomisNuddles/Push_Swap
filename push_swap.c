@@ -6,7 +6,7 @@
 /*   By: nleandro <nleandro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 13:51:22 by nleandro          #+#    #+#             */
-/*   Updated: 2025/03/04 17:25:13 by nleandro         ###   ########.fr       */
+/*   Updated: 2025/03/28 18:06:44 by nleandro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,11 @@ int	main(int cnt, char **args)
 	if (data && cnt > 1)
 	{
 		if (!ft_strncmp(args[1], "error", 5))
-		{
-			ft_printf("Errors:\n%s", ERRORS);
-			return (free_stacks(data), 0);
-		}
+			return (error_log("Er00"), free_stacks(data), 0);
 		if (!args_pick(cnt, args, data->a))
 			return (free_stacks(data), 0);
-		data->oop = stk_ordered(data->a);
-		if (!data->oop)
-			return (error_log("Er01"), free_stacks(data), 0);
-		else if (data->oop == 1)
-			ft_printf("oof: %i\n\n", stk_ordered(data->a));
-		else
-			ft_printf("foo: %i\n\n", stk_ordered(data->a));
+		if (!sorter_check(data))
+			return (error_log("Er08"), free_stacks(data), 0);
 	}
 	else if (!data)
 		error_log("Er03");

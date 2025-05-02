@@ -80,9 +80,6 @@ fclean:
 re: fclean all
 
 exe: re
-	$(T_EXECUTING)
-	$(EXE)
-	$(T_EXECUTED)
 
 #			-->|   File Dependencies   |<--
 $(START):

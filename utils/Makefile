@@ -7,7 +7,8 @@ FILES_L		=		ft_isalpha ft_isdigit ft_isalnum ft_isascii ft_isprint			\
 					ft_strmapi ft_striteri											\
 					ft_putchar_fd ft_putstr_fd ft_putnbr_fd ft_putendl_fd			\
 					ft_lstnew ft_lstadd_front ft_lstadd_back ft_lstsize ft_lstlast	\
-					ft_lstdelone ft_lstclear ft_lstiter ft_lstmap ft_mtx_free ft_mtxlen
+					ft_lstdelone ft_lstclear ft_lstiter ft_lstmap ft_mtx_free		\
+					ft_mtxlen ft_atol
 
 FILES_P		=		aux_itoas aux_types aux_checks aux_builds aux_data aux_format ft_printf
 

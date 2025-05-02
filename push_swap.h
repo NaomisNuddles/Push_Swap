@@ -6,7 +6,7 @@
 /*   By: nleandro <nleandro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 18:55:58 by nleandro          #+#    #+#             */
-/*   Updated: 2025/03/04 17:23:31 by nleandro         ###   ########.fr       */
+/*   Updated: 2025/05/02 09:44:04 by nleandro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,22 @@
 #  define MAX_STACK_SIZE 100000
 # endif
 
-# define ERRORS "Er01:		Stack Already Sorted!\n\
-Er02:		No Stack Provided!\n\
+# define ERRORS "Er01:		Stack Already Sorted! [UNLOGGED ERROR]\n\
+Er02:		No Stack Provided! [UNLOGGED ERROR]\n\
 Er03:		Falid to Allocate Stacks!\n\
 Er04:		Invalid Stack - Not Space Divided, Not Sign Defined, Not Digit Types!\n\
-Er05:		Repeated Numbers Found!\n\
-Er06:		Undefined - Did Not Find Sorting Product!\n\
-Er07:		Undefined - Did Not Exited Stack b!\n\
-Er08:		Undefined - Did Not Sort Stack a!\n\
+Er05:		Number Out of Range!\n\
+Er06:		Repeated Numbers Found!\n\
+Er07:		UDF - Did Not Find Sorting Product!\n\
+Er08:		UDF - Lost Sorting Product!\n\
+Er09:		UDF - Lost Stack a!\n\
+Er10:		UDF - Lost Stack b!\n\
+Er11:		UDF - Did Not Sort Stack a!\n\
 "
 
 typedef enum e_rules
 {
-	NON,
+	NOOP,
 	PUSH,
 	SWAP,
 	LOOP,
@@ -50,7 +53,7 @@ typedef struct s_stacks
 {
 	t_stk	*a;
 	t_stk	*b;
-	int		oop;
+	int		at_wrg;
 	t_rules	do_a;
 	t_rules	do_b;
 }	t_stacks;
@@ -78,6 +81,7 @@ int				stk_next_max(t_stk *stk, int p_max);
 
 //	stk_aux_read.c
 int				stk_ordered(t_stk *stk);
+bool			sorter_check(t_stacks *data);
 
 //	args_to_stk.c
 bool			arg_issplit(char *arg);

@@ -6,7 +6,7 @@
 /*   By: nleandro <nleandro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 18:55:58 by nleandro          #+#    #+#             */
-/*   Updated: 2025/02/04 13:22:06 by nleandro         ###   ########.fr       */
+/*   Updated: 2025/03/18 16:26:21 by nleandro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,26 +29,32 @@ bool	arg_isvalid(char *arg)
 	size_t	i;
 
 	i = 0;
-	if (arg[i] && (arg[i] == 45 || arg[i] == 43))
+	if (arg[i] && (arg[i] == 45 || arg[i] == 43) && arg[i + 1] != 48)
 		i++;
 	while (arg[i] && ft_isdigit(arg[i]))
 		i++;
 	if (i != ft_strlen(arg))
 		return (error_log("Er04"), false);
+	if (!arg || !arg[0])
+		return (error_log("Er07"), false);
 	return (true);
 }
 
 bool	arg_pop(char *arg, t_stk *stk)
 {
-	int	i;
-	int	num;
+	int		i;
+	int		num;
+	long	num_c;
 
 	i = 0;
 	num = ft_atoi(arg);
+	num_c = ft_atol(arg);
+	if ((long)num != num_c)
+	return (error_log("Er05"), false);
 	while (i <= stk->top)
 	{
 		if (num == stk->stk[i])
-			return (error_log("Er05"), false);
+			return (error_log("Er06"), false);
 		i++;
 	}
 	stk_push(stk, num);
