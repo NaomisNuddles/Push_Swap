@@ -6,38 +6,11 @@
 /*   By: nleandro <nleandro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 18:55:58 by nleandro          #+#    #+#             */
-/*   Updated: 2025/05/02 19:14:56 by nleandro         ###   ########.fr       */
+/*   Updated: 2025/05/03 09:34:52 by nleandro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void write_ops(t_stacks *data)
-{
-	if (data->do_a == data->do_b && data->do_a == SWAP)
-		ft_printf("ss\n");
-	else if (data->do_a == data->do_b && data->do_a == DUMB)
-		ft_printf("rrr\n");
-	else if (data->do_a == data->do_b && data->do_a == LOOP)
-		ft_printf("rrr\n");
-	else if (data->do_a == SWAP)
-		ft_printf("sa\n");
-	else if (data->do_a == DUMB)
-		ft_printf("ra\n");
-	else if (data->do_a == LOOP)
-		ft_printf("rra\n");
-	else if (data->do_a == PUSH)
-		ft_printf("pb\n");
-	else if (data->do_b == SWAP)
-		ft_printf("sb\n");
-	else if (data->do_b == DUMB)
-		ft_printf("rb\n");
-	else if (data->do_b == LOOP)
-		ft_printf("rrb\n");
-	else if (data->do_b == PUSH)
-		ft_printf("pa\n");
-	clean_wemap(data);
-}
 
 static void	do_both(t_stacks *data)
 {
@@ -93,4 +66,31 @@ bool	do_ops(t_stacks *data)
 	else
 		return (false);
 	return (true);	
+}
+
+void write_ops(t_stacks *data)
+{
+	if (data->do_a == data->do_b && data->do_a == SWAP)
+		ft_printf("ss\n");
+	else if (data->do_a == data->do_b && data->do_a == DUMB)
+		ft_printf("rrr\n");
+	else if (data->do_a == data->do_b && data->do_a == LOOP)
+		ft_printf("rrr\n");
+	else if (data->do_a == SWAP)
+		ft_printf("sa\n");
+	else if (data->do_a == DUMB)
+		ft_printf("ra\n");
+	else if (data->do_a == LOOP)
+		ft_printf("rra\n");
+	else if (data->do_a == PUSH)
+		ft_printf("pb\n");
+	else if (data->do_b == SWAP)
+		ft_printf("sb\n");
+	else if (data->do_b == DUMB)
+		ft_printf("rb\n");
+	else if (data->do_b == LOOP)
+		ft_printf("rrb\n");
+	else if (data->do_b == PUSH)
+		ft_printf("pa\n");
+	clean_wemap(data);
 }

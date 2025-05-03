@@ -6,7 +6,7 @@
 /*   By: nleandro <nleandro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 18:55:58 by nleandro          #+#    #+#             */
-/*   Updated: 2025/05/02 19:52:24 by nleandro         ###   ########.fr       */
+/*   Updated: 2025/05/03 09:40:27 by nleandro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,28 +85,32 @@ void			get_ops(t_stacks *data);
 void			build_wemap(t_stacks *data);
 
 //	wemap_utils.c
-void			clean_wemap(t_stacks *data);
 //static void		lock_both(t_stacks *data);
 //static void		lock_reverse(t_stacks *data);
 //static void		lock_ops(t_stacks *data, t_lock path);
+void			clean_wemap(t_stacks *data);
 void			get_wemap(t_stacks *data);
 
+//	stk_math.c
+int				stk_min(t_stk *stk);
+int				stk_next_min(t_stk *stk, int p_min);
+int				stk_max(t_stk *stk);
+int				stk_next_max(t_stk *stk, int p_max);
+
 //	stk_comp.c
+int				stk_poke(t_stk *stk, int num);
+bool			stk_issorted(t_stk *stk);
 bool			stk_issorted_rev(t_stk *stk);
-//static int				stk_poke(t_stk *stk, int num);
-//static int				stk_min(t_stk *stk);
-//static int				stk_next_min(t_stk *stk, int p_min);
 int				stk_oop_num(t_stk *stk);
 
 //	stk_ops_do.c
-void 			write_ops(t_stacks *data);
 //static void		do_both(t_stacks *data);
 //static void		do_one_a(t_stacks *data);
 //static void		do_one_b(t_stacks *data);
+void 			write_ops(t_stacks *data);
 bool			do_ops(t_stacks *data);
 
 //	stk_ops_dumb.c
-bool			stk_issorted(t_stk *stk);
 bool			ft_stk_swap(t_stk *stk);
 bool			ft_stk_push(t_stk *stk_src, t_stk *stk_dst);
 bool			ft_stk_cycle(t_stk *stk);

@@ -6,25 +6,11 @@
 /*   By: nleandro <nleandro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 18:55:58 by nleandro          #+#    #+#             */
-/*   Updated: 2025/05/02 19:39:34 by nleandro         ###   ########.fr       */
+/*   Updated: 2025/05/03 09:34:23 by nleandro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	clean_wemap(t_stacks *data)
-{
-	data->op_a->num = stk_oop_num(data->a);
-	data->op_a->sx = 0;
-	data->op_a->rx = 0;
-	data->op_a->rrx = 0;
-	data->op_a->px = 0;
-	data->op_b->num = stk_oop_num(data->b);
-	data->op_b->sx = 0;
-	data->op_b->rx = 0;
-	data->op_b->rrx = 0;
-	data->op_b->px = 0;
-}
 
 static void	lock_both(t_stacks *data)
 {
@@ -95,6 +81,20 @@ static void	lock_ops(t_stacks *data, t_lock path)
 		data->op_b->rx = -1;
 		data->op_b->rrx = -1;
 	}
+}
+
+void	clean_wemap(t_stacks *data)
+{
+	data->op_a->num = stk_oop_num(data->a);
+	data->op_a->sx = 0;
+	data->op_a->rx = 0;
+	data->op_a->rrx = 0;
+	data->op_a->px = 0;
+	data->op_b->num = stk_oop_num(data->b);
+	data->op_b->sx = 0;
+	data->op_b->rx = 0;
+	data->op_b->rrx = 0;
+	data->op_b->px = 0;
 }
 
 void	get_wemap(t_stacks *data)

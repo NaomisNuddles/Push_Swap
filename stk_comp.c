@@ -1,32 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stk_comp.c                                         :+:      :+:    :+:   */
+/*   stk_ops_comp.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nleandro <nleandro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 16:29:53 by nleandro          #+#    #+#             */
-/*   Updated: 2025/05/02 19:54:35 by nleandro         ###   ########.fr       */
+/*   Updated: 2025/05/03 09:32:55 by nleandro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-bool	stk_issorted_rev(t_stk *stk)
-{
-	int	i;
-
-	i = 0;
-	while (i < stk->top)
-	{
-		if (stk->stk[i] > stk->stk[i + 1])
-			return (false);
-		i++;
-	}
-	return (true);
-}
-
-static int	stk_poke(t_stk *stk, int num)
+int	stk_poke(t_stk *stk, int num)
 {
 	int	i;
 
@@ -40,37 +26,32 @@ static int	stk_poke(t_stk *stk, int num)
 	return (i);
 }
 
-static int	stk_min(t_stk *stk)
+bool	stk_issorted(t_stk *stk)
 {
 	int	i;
-	int	j;
 
-	i = stk->top;
-	j = i - 1;
-	while (j >= 0)
+	i = 0;
+	while (i < stk->top)
 	{
-		if (stk->stk[i] > stk->stk[j])
-			i = j;
-		j--;
+		if (stk->stk[i] < stk->stk[i + 1])
+			return (false);
+		i++;
 	}
-	return (stk->stk[i]);
+	return (true);
 }
 
-static int	stk_next_min(t_stk *stk, int p_min)
+bool	stk_issorted_rev(t_stk *stk)
 {
 	int	i;
-	int	j;
 
-	i = stk->top;
-	j = i - 1;
-	while (j >= 0)
+	i = 0;
+	while (i < stk->top)
 	{
-		if ((stk->stk[i] > stk->stk[j] && stk->stk[j] > p_min) \
-		|| stk->stk[i] <= p_min)
-			i = j;
-		j--;
+		if (stk->stk[i] > stk->stk[i + 1])
+			return (false);
+		i++;
 	}
-	return (stk->stk[i]);
+	return (true);
 }
 
 int	stk_oop_num(t_stk *stk)

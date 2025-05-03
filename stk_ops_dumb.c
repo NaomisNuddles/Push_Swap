@@ -6,25 +6,11 @@
 /*   By: nleandro <nleandro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 18:55:58 by nleandro          #+#    #+#             */
-/*   Updated: 2025/03/28 18:09:38 by nleandro         ###   ########.fr       */
+/*   Updated: 2025/05/03 09:32:35 by nleandro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-bool	stk_issorted(t_stk *stk)
-{
-	int	i;
-
-	i = 0;
-	while (i < stk->top)
-	{
-		if (stk->stk[i] < stk->stk[i + 1])
-			return (false);
-		i++;
-	}
-	return (true);
-}
 
 bool	ft_stk_swap(t_stk *stk)
 {
