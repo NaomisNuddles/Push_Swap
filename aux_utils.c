@@ -6,7 +6,7 @@
 /*   By: nleandro <nleandro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 18:55:58 by nleandro          #+#    #+#             */
-/*   Updated: 2025/05/02 18:06:42 by nleandro         ###   ########.fr       */
+/*   Updated: 2025/05/04 11:57:06 by nleandro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ void	free_stacks(t_stacks *data)
 	{
 		free(data->a);
 		free(data->b);
+		free(data->op_a);
+		free(data->op_b);
 		free(data);
 	}
 }

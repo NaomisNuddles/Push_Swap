@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stk_ops_comp.c                                     :+:      :+:    :+:   */
+/*   stk_comp.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nleandro <nleandro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 16:29:53 by nleandro          #+#    #+#             */
-/*   Updated: 2025/05/03 09:32:55 by nleandro         ###   ########.fr       */
+/*   Updated: 2025/05/03 20:06:43 by nleandro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	stk_poke(t_stk *stk, int num)
 	return (i);
 }
 
-bool	stk_issorted(t_stk *stk)
+bool	stk_issort(t_stk *stk)
 {
 	int	i;
 
@@ -40,7 +40,7 @@ bool	stk_issorted(t_stk *stk)
 	return (true);
 }
 
-bool	stk_issorted_rev(t_stk *stk)
+bool	stk_issort_rev(t_stk *stk)
 {
 	int	i;
 
@@ -54,7 +54,7 @@ bool	stk_issorted_rev(t_stk *stk)
 	return (true);
 }
 
-int	stk_oop_num(t_stk *stk)
+int	stk_sendback_num(t_stk *stk)
 {
 	int	min;
 	int	n_min;

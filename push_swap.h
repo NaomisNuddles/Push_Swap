@@ -6,7 +6,7 @@
 /*   By: nleandro <nleandro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 18:55:58 by nleandro          #+#    #+#             */
-/*   Updated: 2025/05/03 09:40:27 by nleandro         ###   ########.fr       */
+/*   Updated: 2025/05/03 20:06:59 by nleandro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,9 @@ typedef struct s_stacks
 void			get_ops(t_stacks *data);
 
 //	wemap_build.c
-//static int 				num_to_we(int num, int n_num);
-//static int				get_push_weight(t_stacks *data, char stk);
-//static int				get_weight(t_stacks *data, t_rules type, t_rules rev, char stk);
+//static int 				weight_val(int num, int n_num);
+//static int				get_push_cost(t_stacks *data, char stk);
+//static int				get_cost(t_stacks *data, t_rules type, t_rules rev, char stk);
 void			build_wemap(t_stacks *data);
 
 //	wemap_utils.c
@@ -99,9 +99,9 @@ int				stk_next_max(t_stk *stk, int p_max);
 
 //	stk_comp.c
 int				stk_poke(t_stk *stk, int num);
-bool			stk_issorted(t_stk *stk);
-bool			stk_issorted_rev(t_stk *stk);
-int				stk_oop_num(t_stk *stk);
+bool			stk_issort(t_stk *stk);
+bool			stk_issort_rev(t_stk *stk);
+int				stk_sendback_num(t_stk *stk);
 
 //	stk_ops_do.c
 //static void		do_both(t_stacks *data);

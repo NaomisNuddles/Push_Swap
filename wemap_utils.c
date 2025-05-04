@@ -6,7 +6,7 @@
 /*   By: nleandro <nleandro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 18:55:58 by nleandro          #+#    #+#             */
-/*   Updated: 2025/05/03 09:34:23 by nleandro         ###   ########.fr       */
+/*   Updated: 2025/05/04 12:02:18 by nleandro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,12 @@ static void	lock_ops(t_stacks *data, t_lock path)
 
 void	clean_wemap(t_stacks *data)
 {
-	data->op_a->num = stk_oop_num(data->a);
+	data->op_a->num = stk_sendback_num(data->a);
 	data->op_a->sx = 0;
 	data->op_a->rx = 0;
 	data->op_a->rrx = 0;
 	data->op_a->px = 0;
-	data->op_b->num = stk_oop_num(data->b);
+	data->op_b->num = stk_sendback_num(data->b);
 	data->op_b->sx = 0;
 	data->op_b->rx = 0;
 	data->op_b->rrx = 0;
@@ -112,6 +112,8 @@ void	get_wemap(t_stacks *data)
 		clean_wemap(data);
 	else
 		return ;
+	if (data->b->top <= 1)
+		lock_ops(data, SEMI_B);
 	lock_reverse(data);
 	data->do_a = NOOP;
 	data->do_b = NOOP;

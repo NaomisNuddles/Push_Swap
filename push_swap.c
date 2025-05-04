@@ -6,7 +6,7 @@
 /*   By: nleandro <nleandro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 13:51:22 by nleandro          #+#    #+#             */
-/*   Updated: 2025/05/02 20:02:07 by nleandro         ###   ########.fr       */
+/*   Updated: 2025/05/04 11:56:19 by nleandro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,28 +28,14 @@ static bool	stack_sort_unrev(t_stacks *data)
 
 static bool	stack_sort(t_stacks *data)
 {
-	data->op_a->num = stk_oop_num(data->a);
+	data->op_a->num = stk_sendback_num(data->a);
 	if (!data->op_a->num)
 		return (error_log("Er01"), false);
 	else if (data->op_a->num == -1)
 		return (error_log("Er07"), false);
-	if (stk_issorted_rev(data->a))
-	{
-		while (data->op_a->num || data->op_a->num < 0)
-		{
-			data->do_a = LOOP;
-			get_ops(data);
-			if (!do_ops(data))
-				return (error_log("Er09"), false);
-			write_ops(data);
-		}
-	}
-	else
-	{
-		if (!stack_sort_unrev(data))
-			return (false);
-	}
-	if (!stk_issorted(data->a))
+	if (!stack_sort_unrev(data))
+		return (false);
+	if (!stk_issort(data->a))
 		return (error_log("Er11"), false);
 	return (true);
 }
