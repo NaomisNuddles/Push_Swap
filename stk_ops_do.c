@@ -6,7 +6,7 @@
 /*   By: nleandro <nleandro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 18:55:58 by nleandro          #+#    #+#             */
-/*   Updated: 2025/05/03 09:34:52 by nleandro         ###   ########.fr       */
+/*   Updated: 2025/05/04 12:41:22 by nleandro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,10 @@ bool	do_ops(t_stacks *data)
 		do_one_b(data);
 	else
 		return (false);
-	return (true);	
+	return (true);
 }
 
-void write_ops(t_stacks *data)
+void	write_ops(t_stacks *data)
 {
 	if (data->do_a == data->do_b && data->do_a == SWAP)
 		ft_printf("ss\n");

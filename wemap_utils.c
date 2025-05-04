@@ -6,7 +6,7 @@
 /*   By: nleandro <nleandro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 18:55:58 by nleandro          #+#    #+#             */
-/*   Updated: 2025/05/04 12:02:18 by nleandro         ###   ########.fr       */
+/*   Updated: 2025/05/04 12:41:50 by nleandro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,20 @@
 static void	lock_both(t_stacks *data)
 {
 	if (data->do_a == SWAP)
-		{
-			data->op_a->sx = -1;
-			data->op_b->sx = -1;
-		}
-		else if (data->do_a == DUMB)
-		{
-			data->op_a->rrx = -1;
-			data->op_b->rrx = -1;
-		}
-		else if (data->do_a == LOOP)
-		{
-			data->op_a->rx = -1;
-			data->op_b->rx = -1;
-		}
+	{
+		data->op_a->sx = -1;
+		data->op_b->sx = -1;
+	}
+	else if (data->do_a == DUMB)
+	{
+		data->op_a->rrx = -1;
+		data->op_b->rrx = -1;
+	}
+	else if (data->do_a == LOOP)
+	{
+		data->op_a->rx = -1;
+		data->op_b->rx = -1;
+	}
 }
 
 static void	lock_reverse(t_stacks *data)

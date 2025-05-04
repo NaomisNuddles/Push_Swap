@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   args_to_stk.c                                      :+:      :+:    :+:   */
+/*   stk_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nleandro <nleandro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 18:55:58 by nleandro          #+#    #+#             */
-/*   Updated: 2025/03/18 16:26:21 by nleandro         ###   ########.fr       */
+/*   Updated: 2025/05/04 12:38:52 by nleandro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-bool	arg_issplit(char *arg)
+static bool	arg_issplit(char *arg)
 {
 	size_t	i;
 
@@ -24,7 +24,7 @@ bool	arg_issplit(char *arg)
 	return (false);
 }
 
-bool	arg_isvalid(char *arg)
+static bool	arg_isvalid(char *arg)
 {
 	size_t	i;
 
@@ -40,7 +40,7 @@ bool	arg_isvalid(char *arg)
 	return (true);
 }
 
-bool	arg_pop(char *arg, t_stk *stk)
+static bool	arg_pop(char *arg, t_stk *stk)
 {
 	int		i;
 	int		num;
@@ -50,7 +50,7 @@ bool	arg_pop(char *arg, t_stk *stk)
 	num = ft_atoi(arg);
 	num_c = ft_atol(arg);
 	if ((long)num != num_c)
-	return (error_log("Er05"), false);
+		return (error_log("Er05"), false);
 	while (i <= stk->top)
 	{
 		if (num == stk->stk[i])

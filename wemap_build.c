@@ -6,13 +6,13 @@
 /*   By: nleandro <nleandro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 18:55:58 by nleandro          #+#    #+#             */
-/*   Updated: 2025/05/04 12:13:19 by nleandro         ###   ########.fr       */
+/*   Updated: 2025/05/04 12:40:32 by nleandro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int weight_val(int num, int n_num)
+static int	weight_val(int num, int n_num)
 {
 	if (num > n_num && !n_num)
 		return (8);

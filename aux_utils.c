@@ -6,13 +6,13 @@
 /*   By: nleandro <nleandro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 18:55:58 by nleandro          #+#    #+#             */
-/*   Updated: 2025/05/04 11:57:06 by nleandro         ###   ########.fr       */
+/*   Updated: 2025/05/04 12:39:54 by nleandro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	set_stacks_vals (t_stacks *data)
+static void	set_stacks_vals(t_stacks *data)
 {
 	data->a->top = -1;
 	data->op_a->num = 0;

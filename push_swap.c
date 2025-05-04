@@ -6,25 +6,11 @@
 /*   By: nleandro <nleandro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 13:51:22 by nleandro          #+#    #+#             */
-/*   Updated: 2025/05/04 11:56:19 by nleandro         ###   ########.fr       */
+/*   Updated: 2025/05/04 12:36:35 by nleandro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static bool	stack_sort_unrev(t_stacks *data)
-{
-	while (!(!data->op_a->num && data->op_b->num == -1) || data->op_a->num < 0)
-	{
-		get_wemap(data);
-		build_wemap(data);
-		get_ops(data);
-		if (!do_ops(data))
-			return (error_log("Er09"), false);
-		write_ops(data);
-	}
-	return (true);
-}
 
 static bool	stack_sort(t_stacks *data)
 {
@@ -33,10 +19,17 @@ static bool	stack_sort(t_stacks *data)
 		return (error_log("Er01"), false);
 	else if (data->op_a->num == -1)
 		return (error_log("Er07"), false);
-	if (!stack_sort_unrev(data))
-		return (false);
+	while (!(!data->op_a->num && data->op_b->num == -1) || data->op_a->num < 0)
+	{
+		get_wemap(data);
+		build_wemap(data);
+		get_ops(data);
+		if (!do_ops(data))
+			return (error_log("Er08"), false);
+		write_ops(data);
+	}
 	if (!stk_issort(data->a))
-		return (error_log("Er11"), false);
+		return (error_log("Er09"), false);
 	return (true);
 }
 
