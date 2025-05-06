@@ -6,7 +6,7 @@
 /*   By: nleandro <nleandro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 18:55:58 by nleandro          #+#    #+#             */
-/*   Updated: 2025/05/04 12:40:32 by nleandro         ###   ########.fr       */
+/*   Updated: 2025/05/06 16:14:51 by nleandro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,12 @@ static int	get_push_cost(t_stacks *data, char stk)
 	else
 		data->do_b = PUSH;
 	do_ops(data);
-	weight = weight_val(data->op_a->num, stk_sendback_num(data->a)) + \
-	weight_val(data->op_b->num, stk_sendback_num(data->b));
+	if (stk == 97)
+		weight = weight_val(data->op_a->num, stk_sendback_num(data->a)) - \
+		weight_val(data->op_b->num, stk_sendback_num(data->b));
+	else
+		weight = weight_val(data->op_a->num, stk_sendback_num(data->a)) + \
+		weight_val(data->op_b->num, stk_sendback_num(data->b));
 	data->do_a = NOOP;
 	data->do_b = NOOP;
 	if (stk == 97)

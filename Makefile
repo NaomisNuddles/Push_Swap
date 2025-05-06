@@ -1,10 +1,10 @@
 #			-->|   Files to Compile   |<--
-FILES		=		aux_utils stk_parsing stk_ops_core stk_ops_dumb stk_ops_do stk_comp wemap_utils wemap_build wemap_read
+FILES		=		aux_utils stk_parsing stk_ops_core stk_ops_dumb stk_ops_do stk_math stk_comp wemap_utils wemap_build wemap_read
 
 #			-->|   Titles   |<--
 HEAD		=		"42 Push Swap"
 NAME		=		push_swap.a
-RUN			=		push_swap.exe
+RUN			=		exe
 UTL			=		ft_utils_lib.a
 
 #			-->|   Command Definitions   |<--

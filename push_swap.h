@@ -6,7 +6,7 @@
 /*   By: nleandro <nleandro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 18:55:58 by nleandro          #+#    #+#             */
-/*   Updated: 2025/05/04 12:38:30 by nleandro         ###   ########.fr       */
+/*   Updated: 2025/05/06 16:30:50 by nleandro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,15 +75,14 @@ typedef struct s_stacks
 
 //	wemap_read.c
 //static void			get_both(t_stacks *data);
-//static void		get_a_ops(t_stacks *data);
+//static void			get_a_ops(t_stacks *data);
 //static void			get_b_ops(t_stacks *data);
 void			get_ops(t_stacks *data);
 
 //	wemap_build.c
-//static int 				weight_val(int num, int n_num);
-//static int				get_push_cost(t_stacks *data, char stk);
-//static int				get_cost(t_stacks *data, t_rules type, 
-//rev, char stk);
+//static int 			weight_val(int num, int n_num);
+//static int			get_push_cost(t_stacks *data, char stk);
+//static int			get_cost(t_stacks *data, t_rules type, rev, char stk);
 void			build_wemap(t_stacks *data);
 
 //	wemap_utils.c
@@ -93,12 +92,17 @@ void			build_wemap(t_stacks *data);
 void			clean_wemap(t_stacks *data);
 void			get_wemap(t_stacks *data);
 
+//	stk_math.c
+int				stk_poke(t_stk *stk, int num);
+int				stk_min(t_stk *stk);
+int				stk_next_min(t_stk *stk, int p_min);
+int				stk_max(t_stk *stk);
+int				stk_next_max(t_stk *stk, int p_max);
+
 //	stk_comp.c
-//static int			stk_poke(t_stk *stk, int num);
-//static int			stk_min(t_stk *stk);
-//static int			stk_next_min(t_stk *stk, int p_min);
 bool			stk_issort(t_stk *stk);
 int				stk_sendback_num(t_stk *stk);
+int				stk_sendfront_num(t_stk *stk);
 
 //	stk_ops_do.c
 //static void		do_both(t_stacks *data);

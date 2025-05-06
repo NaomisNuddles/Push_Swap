@@ -6,7 +6,7 @@
 /*   By: nleandro <nleandro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 13:51:22 by nleandro          #+#    #+#             */
-/*   Updated: 2025/05/04 12:36:35 by nleandro         ###   ########.fr       */
+/*   Updated: 2025/05/06 16:39:28 by nleandro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static bool	stack_sort(t_stacks *data)
 		return (error_log("Er07"), false);
 	while (!(!data->op_a->num && data->op_b->num == -1) || data->op_a->num < 0)
 	{
+		ft_printf("\nnum_f: %i\n\n", stk_sendfront_num(data->a));
 		get_wemap(data);
 		build_wemap(data);
 		get_ops(data);
@@ -28,6 +29,7 @@ static bool	stack_sort(t_stacks *data)
 			return (error_log("Er08"), false);
 		write_ops(data);
 	}
+	ft_printf("\nnum_f: %i\n\n", stk_sendfront_num(data->a));
 	if (!stk_issort(data->a))
 		return (error_log("Er09"), false);
 	return (true);

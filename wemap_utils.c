@@ -6,7 +6,7 @@
 /*   By: nleandro <nleandro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 18:55:58 by nleandro          #+#    #+#             */
-/*   Updated: 2025/05/04 12:41:50 by nleandro         ###   ########.fr       */
+/*   Updated: 2025/05/06 16:05:18 by nleandro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void	get_wemap(t_stacks *data)
 		lock_ops(data, ALL_B);
 	else if (data->op_a->num > 0 && data->op_b->num == 0)
 		lock_ops(data, SEMI_B);
-	else if (data->op_a->num > 0 && data->op_b->num == 0)
+	else if (data->op_a->num > 0 && data->op_b->num > 0)
 		clean_wemap(data);
 	else
 		return ;

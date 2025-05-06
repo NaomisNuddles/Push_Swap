@@ -6,58 +6,11 @@
 /*   By: nleandro <nleandro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 16:29:53 by nleandro          #+#    #+#             */
-/*   Updated: 2025/05/04 12:29:44 by nleandro         ###   ########.fr       */
+/*   Updated: 2025/05/06 16:42:58 by nleandro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static int	stk_poke(t_stk *stk, int num)
-{
-	int	i;
-
-	i = stk->top;
-	while (i >= 0)
-	{
-		if (stk->stk[i] == num)
-			break ;
-		i--;
-	}
-	return (i);
-}
-
-static int	stk_min(t_stk *stk)
-{
-	int	i;
-	int	j;
-
-	i = stk->top;
-	j = i - 1;
-	while (j >= 0)
-	{
-		if (stk->stk[i] > stk->stk[j])
-			i = j;
-		j--;
-	}
-	return (stk->stk[i]);
-}
-
-static int	stk_next_min(t_stk *stk, int p_min)
-{
-	int	i;
-	int	j;
-
-	i = stk->top;
-	j = i - 1;
-	while (j >= 0)
-	{
-		if ((stk->stk[i] > stk->stk[j] && stk->stk[j] > p_min) \
-		|| stk->stk[i] <= p_min)
-			i = j;
-		j--;
-	}
-	return (stk->stk[i]);
-}
 
 bool	stk_issort(t_stk *stk)
 {
@@ -92,4 +45,25 @@ int	stk_sendback_num(t_stk *stk)
 	if (at_sep == stk->top + 1)
 		return (0);
 	return (stk->top + 1 - at_sep);
+}
+
+int	stk_sendfront_num(t_stk *stk)
+{
+	int	max;
+	int	n_max;
+	int	at_sep;
+
+	at_sep = stk->top;
+	max = stk_max(stk);
+	while (at_sep >= 0)
+	{
+		n_max = stk_next_max(stk, max);
+		if (stk_poke(stk, max) < stk_poke(stk, n_max))
+			break ;
+		max = n_max;
+		at_sep--;
+	}
+	if (at_sep == -1)
+		return (0);
+	return (stk->top - at_sep);
 }
