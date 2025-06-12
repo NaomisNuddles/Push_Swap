@@ -6,7 +6,7 @@
 /*   By: nleandro <nleandro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 18:55:58 by nleandro          #+#    #+#             */
-/*   Updated: 2025/05/06 15:42:30 by nleandro         ###   ########.fr       */
+/*   Updated: 2025/05/08 16:37:49 by nleandro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,75 +14,73 @@
 
 static void	get_both(t_stacks *data)
 {
-	if ((data->do_a == SWAP || data->do_b == SWAP) && \
-		data->op_a->sx == data->op_b->sx)
-	{
-		data->do_a = SWAP;
+	if (data->do_a == SWAP && data->op_a->sx <= data->op_b->sx)
 		data->do_b = SWAP;
-	}
-	else if ((data->do_a == DUMB || data->do_b == DUMB) && \
-		data->op_a->rx == data->op_b->rx)
-	{
-		data->do_a = DUMB;
+	else if (data->do_a == DUMB && data->op_a->rx <= data->op_b->rx)
 		data->do_b = DUMB;
-	}
-	else if ((data->do_a == LOOP || data->do_b == LOOP) && \
-		data->op_a->rrx == data->op_b->rrx)
-	{
-		data->do_a = LOOP;
+	else if (data->do_a == LOOP && data->op_a->rrx <= data->op_b->rrx)
 		data->do_b = LOOP;
-	}
+	else if (data->do_b == SWAP && data->op_b->sx <= data->op_a->sx)
+		data->do_a = SWAP;
+	else if (data->do_b == DUMB && data->op_b->rx <= data->op_a->rx)
+		data->do_a = DUMB;
+	else if (data->do_b == LOOP && data->op_b->rrx <= data->op_a->rrx)
+		data->do_a = LOOP;
 }
 
 static void	get_a_ops(t_stacks *data)
 {
-	if (data->op_a->sx == 8 || (data->op_a->sx == 4 && \
-		data->op_a->sx >= data->op_a->rx && data->op_a->sx >= data->op_a->rrx \
-		&& data->op_a->sx >= data->op_a->px) || (data->op_a->sx == 2 && \
-		data->op_a->sx > data->op_a->rx && data->op_a->sx > data->op_a->rrx && \
-		data->op_a->sx > data->op_a->px))
-		data->do_a = SWAP;
-	else if (data->op_a->rx == 8 || (data->op_a->rx == 4 && \
-		data->op_a->rx >= data->op_a->rrx && data->op_a->rx >= data->op_a->px) \
-		|| (data->op_a->rx == 2 && data->op_a->rx > data->op_a->rrx && \
-		data->op_a->rx > data->op_a->px))
-		data->do_a = DUMB;
-	else if (data->op_a->rrx == 8 || (data->op_a->rrx == 4 && \
-		data->op_a->rrx >= data->op_a->px) || (data->op_a->rrx == 2 && \
-		data->op_a->rx > data->op_a->px))
+	if (data->op_a->rrx > data->op_a->sx && data->op_a->rrx > data->op_a->rx \
+		&& data->op_a->rrx > data->op_a->px && data->op_a->rrx > data->op_b->px)
 		data->do_a = LOOP;
+	else if (data->op_a->rx > data->op_a->rrx && \
+		data->op_a->rx > data->op_a->px && data->op_a->rx > data->op_b->px)
+		data->do_a = DUMB;
+	else if (data->op_a->sx > data->op_a->px && \
+		data->op_a->sx >= data->op_b->px)
+		data->do_a = SWAP;
+	else if (data->op_b->px > data->op_a->px)
+		data->do_b = PUSH;
 	else
 		data->do_a = PUSH;
 }
 
 static void	get_b_ops(t_stacks *data)
 {
-	if (data->op_b->sx == 8 || (data->op_b->sx == 4 && \
-		data->op_b->sx >= data->op_b->rx && data->op_b->sx >= data->op_b->rrx \
-		&& data->op_b->sx >= data->op_b->px) || (data->op_b->sx == 2 && \
-		data->op_b->sx > data->op_b->rx && data->op_b->sx > data->op_b->rrx && \
-		data->op_b->sx > data->op_b->px))
-		data->do_b = SWAP;
-	else if (data->op_b->rx == 8 || (data->op_b->rx == 4 && \
-		data->op_b->rx >= data->op_b->rrx && data->op_b->rx >= data->op_b->px) \
-		|| (data->op_b->rx == 2 && data->op_b->rx > data->op_b->rrx && \
-		data->op_b->rx > data->op_b->px))
-		data->do_b = DUMB;
-	else if (data->op_b->rrx == 8 || (data->op_b->rrx == 4 && \
-		data->op_b->rrx >= data->op_b->px) || (data->op_b->rrx == 2 && \
-		data->op_b->rx > data->op_b->px))
+	if (data->op_b->rrx > data->op_b->sx && data->op_b->rrx > data->op_b->rx \
+		&& data->op_b->rrx > data->op_b->px)
 		data->do_b = LOOP;
+	else if (data->op_b->rx > data->op_b->rrx && \
+		data->op_b->rx > data->op_b->px)
+		data->do_b = DUMB;
+	else if (data->op_b->sx > data->op_b->px)
+		data->do_b = SWAP;
 	else
 		data->do_b = PUSH;
 }
 
 void	get_ops(t_stacks *data)
 {
-	if (data->op_a->num > 0)
-	{
-		get_a_ops(data);
-		get_both(data);
-	}
+	if (data->op_a->sx == 16)
+		data->do_a = SWAP;
+	else if (data->op_a->rx == 16)
+		data->do_a = DUMB;
+	else if (data->op_a->rrx == 16)
+		data->do_a = LOOP;
+	else if (data->op_b->sx == 16)
+		data->do_b = SWAP;
+	else if (data->op_b->rx == 16)
+		data->do_b = DUMB;
+	else if (data->op_b->rrx == 16)
+		data->do_b = LOOP;
+	else if (data->op_b->px == 32)
+		data->do_b = PUSH;
 	else
-		get_b_ops(data);
+	{
+		if (data->op_a->val > 0)
+			get_a_ops(data);
+		else
+			get_b_ops(data);
+	}
+	get_both(data);
 }

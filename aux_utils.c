@@ -6,7 +6,7 @@
 /*   By: nleandro <nleandro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 18:55:58 by nleandro          #+#    #+#             */
-/*   Updated: 2025/05/04 12:39:54 by nleandro         ###   ########.fr       */
+/*   Updated: 2025/05/08 15:38:31 by nleandro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,16 @@
 static void	set_stacks_vals(t_stacks *data)
 {
 	data->a->top = -1;
-	data->op_a->num = 0;
+	data->op_a->val = 0;
+	data->op_a->pen = 0;
 	data->op_a->sx = 0;
 	data->op_a->rx = 0;
 	data->op_a->rrx = 0;
 	data->op_a->px = 0;
 	data->do_a = NOOP;
 	data->b->top = -1;
-	data->op_b->num = -1;
+	data->op_b->val = -1;
+	data->op_b->pen = -1;
 	data->op_b->sx = 0;
 	data->op_b->rx = 0;
 	data->op_b->rrx = 0;

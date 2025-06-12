@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wemap_utils.c                                      :+:      :+:    :+:   */
+/*   wemap_base.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nleandro <nleandro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 18:55:58 by nleandro          #+#    #+#             */
-/*   Updated: 2025/05/06 16:05:18 by nleandro         ###   ########.fr       */
+/*   Updated: 2025/05/08 15:55:13 by nleandro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,14 @@ static void	lock_ops(t_stacks *data, t_lock path)
 
 void	clean_wemap(t_stacks *data)
 {
-	data->op_a->num = stk_sendback_num(data->a);
+	data->op_a->val = stk_sendfront_num(data->a);
+	data->op_a->pen = stk_sendback_rev_num(data->a);
 	data->op_a->sx = 0;
 	data->op_a->rx = 0;
 	data->op_a->rrx = 0;
 	data->op_a->px = 0;
-	data->op_b->num = stk_sendback_num(data->b);
+	data->op_b->val = stk_sendfront_num(data->b);
+	data->op_b->pen = stk_sendback_rev_num(data->b);
 	data->op_b->sx = 0;
 	data->op_b->rx = 0;
 	data->op_b->rrx = 0;
@@ -100,21 +102,23 @@ void	clean_wemap(t_stacks *data)
 void	get_wemap(t_stacks *data)
 {
 	clean_wemap(data);
-	if (data->op_a->num == 0 && data->op_b->num == 0)
-		data->do_b = PUSH;
-	else if (data->op_a->num == 0 && data->op_b->num > 0)
-		lock_ops(data, ALL_A);
-	else if (data->op_a->num > 0 && data->op_b->num == -1)
-		lock_ops(data, ALL_B);
-	else if (data->op_a->num > 0 && data->op_b->num == 0)
-		lock_ops(data, SEMI_B);
-	else if (data->op_a->num > 0 && data->op_b->num > 0)
-		clean_wemap(data);
-	else
-		return ;
-	if (data->b->top <= 1)
-		lock_ops(data, SEMI_B);
 	lock_reverse(data);
 	data->do_a = NOOP;
 	data->do_b = NOOP;
+	if (data->b->top <= 1)
+		lock_ops(data, SEMI_B);
+	if (data->op_a->val == 0 && data->op_b->val == 0)
+	{
+		lock_ops(data, ALL_A);
+		lock_ops(data, ALL_B);
+		data->op_b->px = 32;
+	}
+	else if (data->op_a->val == 0 && data->op_b->val > 0)
+		lock_ops(data, ALL_A);
+	else if (data->op_a->val > 0 && data->op_b->val == -1)
+		lock_ops(data, ALL_B);
+	else if (data->op_a->val > 0 && data->op_b->val == 0)
+		lock_ops(data, SEMI_B);
+	else if (data->op_a->val > 0 && data->op_b->val > 0)
+		clean_wemap(data);
 }

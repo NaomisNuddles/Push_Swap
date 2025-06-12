@@ -6,7 +6,7 @@
 /*   By: nleandro <nleandro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 18:55:58 by nleandro          #+#    #+#             */
-/*   Updated: 2025/05/06 16:30:50 by nleandro         ###   ########.fr       */
+/*   Updated: 2025/05/08 15:36:05 by nleandro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ typedef struct s_stk
 
 typedef struct s_ops
 {
-	int	num;
+	int	val;
+	int	pen;
 	int	sx;
 	int	rx;
 	int	rrx;
@@ -80,12 +81,12 @@ typedef struct s_stacks
 void			get_ops(t_stacks *data);
 
 //	wemap_build.c
-//static int 			weight_val(int num, int n_num);
-//static int			get_push_cost(t_stacks *data, char stk);
-//static int			get_cost(t_stacks *data, t_rules type, rev, char stk);
+//static int			weight_val(int sb, int n_sb, int sf, int n_sf);
+//static int			get_a_weight(t_stacks *data, t_rules type, t_rules rev);
+//static int			get_b_weight(t_stacks *data, t_rules type, t_rules rev);
 void			build_wemap(t_stacks *data);
 
-//	wemap_utils.c
+//	wemap_base.c
 //static void		lock_both(t_stacks *data);
 //static void		lock_reverse(t_stacks *data);
 //static void		lock_ops(t_stacks *data, t_lock path);
@@ -102,7 +103,9 @@ int				stk_next_max(t_stk *stk, int p_max);
 //	stk_comp.c
 bool			stk_issort(t_stk *stk);
 int				stk_sendback_num(t_stk *stk);
+int				stk_sendback_rev_num(t_stk *stk);
 int				stk_sendfront_num(t_stk *stk);
+int				stk_sendfront_rev_num(t_stk *stk);
 
 //	stk_ops_do.c
 //static void		do_both(t_stacks *data);
